@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block meta %}
+    <!-- Required meta tags -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    {% endblock %} {% block extra_meta %} {% endblock %} {% block corecss %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/main.css')}}"
+    />
+    <script
+      src="https://kit.fontawesome.com/f3bd201d2b.js"
+      crossorigin="anonymous"
+    ></script>
+    {% endblock %} {% block extra_css %} {% endblock %} {% block corejs %}
+    <script
+      src="https://kit.fontawesome.com/f3bd201d2b.js"
+      crossorigin="anonymous"
+    ></script>
+    {% endblock %} {% block extra_js %} {% endblock %}
+
+    <title>Worlds Best Beer? {% block extra_title %}{% endblock %}</title>
+    <link rel="icon" type="image/png" href="../static/img/favicon.png" />
+  </head>
+  <body>
+    <header>
+      <div class="hamburger-container">
+        <div class="hamburger">
+          <span class="hamburger__btn"> </span>
+        </div>
+      </div>
+      <nav>
+        <ul class="nav" id="nav">
+          <li class="nav__item"><a href="/">Home</a></li>
+          {% if user.is_authenticated %}
+          <li class="nav__item"><a href="/discussion">Discussion</a></li>
+          <div class="dropdown">
+            <a class="dropdown__selected">
+              Account
+              <div class="arrow"></div
+            ></a>
+            <ul class="dropdown__menu">
+              <li class="nav__item">
+                <a href="/account/my-posts/{{user.first_name}}">My Posts</a>
+              </li>
+              <li class="nav__item">
+                <a href="/account/my-details/{{user.first_name}}">My Details</a>
+              </li>
+            </ul>
+          </div>
+
+          <li class="nav__item"><a href="/logout">Logout</a></li>
+
+          {% else %}
+          <li class="nav__item"><a href="/login">Login</a></li>
+          <li class="nav__item">
+            <a href="{{ url_for('auth.sign_up') }}">Signup</a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+
+    {% block page_header %} {% with messages =
+    get_flashed_messages(with_categories=true) %} {% if messages %} {% for
+    category, message in messages %}
+    <div class="alert alert__{{category}}">
+      {{ message }}
+      <div class="close">x</div>
+    </div>
+    {% endfor %} {% endif %} {% endwith %} {% endblock %} {% block content %} {%
+    endblock %}
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/acr123/">
+        <i class="fab fa-linkedin-in fa-2x"></i>
+      </a>
+      <a href="https://github.com/alexrem1">
+        <i class="fab fa-github fa-2x"></i>
+      </a>
+    </div>
+
+    <footer>&copy; Copyright 2021</footer>
+    {% block postloadjs %}
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='js/index.js') }}"
+    ></script>
+    {% endblock %}
+  </body>
+</html>

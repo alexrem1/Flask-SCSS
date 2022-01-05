@@ -1,0 +1,105 @@
+.posts--container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: rgba(black, 0.66);
+  padding: 1rem;
+  height: 93vh;
+  justify-content: center;
+
+  h1 {
+    padding-bottom: 1rem;
+  }
+
+  form textarea {
+    width: 70%;
+    height: 50px;
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .posts {
+    height: 345px;
+    overflow: auto;
+
+    p {
+      text-align: center;
+      margin: 1rem;
+    }
+
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: white;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: $secondary-color;
+    }
+
+    .posts__item--container {
+      background-color: $primary-color;
+      padding: 1rem;
+
+      .posts__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+
+        .posts__item__like {
+          display: flex;
+          align-items: center;
+        }
+
+        .posts__item__link a {
+          font-weight: bold;
+          text-decoration: underline;
+          @include transition-ease;
+          &:hover {
+            color: $secondary-color;
+          }
+        }
+      }
+
+      form textarea {
+        width: 70%;
+        margin-bottom: 0.5rem;
+        height: 50px;
+      }
+    }
+
+    .posts__comments--container {
+      padding-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .posts__comments {
+        display: none;
+        width: 100%;
+      }
+      .posts__comments.open {
+        display: flex;
+        flex-direction: column-reverse;
+        background: #726867;
+        padding: 1rem;
+
+        .posts__comments__single {
+          padding: 1rem;
+          display: flex;
+          flex-direction: column;
+          & a {
+            font-weight: bold;
+            text-decoration: underline;
+            @include transition-ease;
+            &:hover {
+              color: $secondary-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+.signup {
+  height: 70vh;
+  h1 {
+    margin-bottom: 2.4rem;
+  }
+  .signup--container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+
+    form {
+      gap: 0.6rem;
+
+      .signup__button {
+        display: flex;
+        gap: 1rem;
+
+        a {
+          color: #000;
+        }
+      }
+    }
+  }
+}

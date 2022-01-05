@@ -1,0 +1,22 @@
+.login {
+  height: 70vh;
+  .login--container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+
+    form {
+      gap: 0.3rem;
+
+      .login__button {
+        display: flex;
+        gap: 1rem;
+
+        a {
+          color: #000;
+        }
+      }
+    }
+  }
+}

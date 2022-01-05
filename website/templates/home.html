@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block extra_title %}- Home{% endblock extra_title
+%} {% block content %}
+<video
+  src="../static/video/video.mp4"
+  muted
+  loop
+  autoplay
+  preload="metadata"
+></video>
+<header class="home--header">
+  <h1>
+    Enter the
+    <span><a href="/discussion">Discussion</a> </span>
+  </h1>
+  {% if user.is_authenticated %}
+  <h2>
+    Welcome
+    <span class="home__username"
+      ><a href="/account/my-details/{{user.first_name}}"
+        >{{user.first_name}}</a
+      ></span
+    >
+    {% endif %}
+  </h2>
+</header>
+<section class="home">
+  What is the worlds greatest beer...
+  <br /><br />
+  We’re starting to see dedication to craft brewing that rivals Europe’s
+  enthusiasm for wine.
+  <br /><br />
+  With a helping hand from you guys, let us know what you think the best beers
+  in the world are.
+  <br /><br />
+  Beer freak or not, these may end up on your bucket—or pint—list.
+  <br />
+</section>
+{% endblock content %}

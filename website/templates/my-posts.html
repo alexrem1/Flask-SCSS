@@ -1,0 +1,59 @@
+{% extends "base.html" %} {% block extra_title %} - {{first_name}}'s Posts{%
+endblock extra_title%} {% block content %}
+<section class="posts--container">
+  <h1>{{first_name}}'s Post History</h1>
+  <ul class="posts my--posts">
+    {% if not posts %}
+    <p>There's no posts yet... Be the first to tell us your favourite beer!</p>
+    {% else %} {% for post in posts %}
+    <div class="posts__item--container">
+      <li class="posts__item">
+        {% if user.id == post.user_id%}
+        <span class="posts__item__link">
+          <a href="/delete-post/{{post.id}}">Delete Post</a></span
+        >{%endif%}
+        <br />
+        {{post.date}} <br /><br />
+        {{ post.data }}
+        <br />
+        {% if user.id in post.likes|map(attribute="post_id")|list %}
+
+        <span class="posts__item__like"
+          ><p>{{post.likes|length}}</p>
+          <a href="/like-post/{{post.id}}"><i class="fas fa-thumbs-up"></i></a
+        ></span>
+        {% else %}
+
+        <span class="posts__item__like"
+          ><p>{{post.likes|length}}</p>
+          <a href="/like-post/{{post.id}}"><i class="far fa-thumbs-up"></i></a
+        ></span>
+        {% endif %}
+      </li>
+    </div>
+
+    <div class="posts__comments--container">
+      <button class="viewComments">
+        View {{post.comments|length}} Comments
+      </button>
+      <div class="posts__comments">
+        {% if not post.comments|length > 0%} There's no comments for this post.
+        {%else%} {% for comment in post.comments %}
+        <div class="posts__comments__single">
+          {{comment.date}}
+          <br />
+          {{comment.user.first_name}} said: "{{comment.data}}""
+          <br />
+          {% if user.id == post.user_id%}
+          <!-- user.id == comment.user_id or user.id == post.first_name eg if they own commment. above is if they own the post-->
+          <a href="/delete-comment/{{comment.id}}">Delete Comment</a>
+          {%endif%}
+        </div>
+        {% endfor %} {%endif%}
+      </div>
+    </div>
+
+    {% endfor %}{% endif %}
+  </ul>
+</section>
+{% endblock %}

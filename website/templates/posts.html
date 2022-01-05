@@ -1,0 +1,80 @@
+{% extends "base.html" %} {% block extra_title %}- Discussion{% endblock
+extra_title%} {% block content%}
+
+<section class="posts--container">
+  <h1>What is the worlds best beer?</h1>
+  <ul class="posts">
+    {% if not posts %}
+    <p>There's no posts yet... Be the first to tell us your favourite beer!</p>
+    {% else %} {% for post in posts %}
+    <div class="posts__item--container">
+      <li class="posts__item">
+        <span class="posts__item__link"
+          >View {{post.user.first_name}}'s
+          <a href="/account/my-posts/{{post.user.first_name}}">
+            Post History
+          </a>
+          <br /></span
+        >{% if user.id == post.user_id%}
+        <span class="posts__item__link">
+          <a href="/delete-post/{{post.id}}">Delete Post</a></span
+        >{%endif%} <br />
+        Username: {{post.user.first_name}}
+
+        <br />
+        Time: {{post.date}} <br />
+        <br />
+        {{ post.data }}
+        <br />
+
+        {% if user.id in post.likes|map(attribute="post_id")|list %}
+
+        <span class="posts__item__like"
+          ><p>{{post.likes|length}}</p>
+          <a href="/like-post/{{post.id}}"><i class="fas fa-thumbs-up"></i></a
+        ></span>
+        {% else %}
+
+        <span class="posts__item__like"
+          ><p>{{post.likes|length}}</p>
+          <a href="/like-post/{{post.id}}"><i class="far fa-thumbs-up"></i></a
+        ></span>
+        {% endif %}
+      </li>
+
+      <form method="POST" action="/discussion/create-comment/{{post.id}}">
+        <textarea name="comment" id="comment"></textarea>
+        <button type="submit">Add Comment</button>
+      </form>
+    </div>
+
+    <div class="posts__comments--container">
+      <button class="viewComments">
+        View {{post.comments|length}} Comments
+      </button>
+      <div class="posts__comments">
+        {% if not post.comments|length > 0 %} There's no comments for this post.
+        {%else%} {% for comment in post.comments %}
+        <div class="posts__comments__single">
+          {{comment.date}}
+          <br />
+          {{comment.user.first_name}} said: "{{comment.data}}"
+          <br />
+          {% if user.id == post.user_id%}
+          <!-- user.id == comment.user_id or user.id == post.first_name eg if they own commment. above is if they own the post-->
+          <a href="/delete-comment/{{comment.id}}">Delete Comment</a>
+          {%endif%}
+        </div>
+        {% endfor %} {%endif%}
+      </div>
+    </div>
+
+    {% endfor %}{% endif %}
+  </ul>
+  <form method="POST" action="/discussion">
+    <textarea name="post"></textarea>
+    <button type="submit">Add Post</button>
+  </form>
+</section>
+
+{% endblock content %}

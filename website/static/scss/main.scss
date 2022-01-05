@@ -1,0 +1,331 @@
+@import "./config";
+@import "./home";
+@import "./posts";
+@import "./login";
+@import "./signup";
+@import "./my-posts";
+@import "./my-details";
+
+:root {
+  --fs-400: 1rem;
+}
+
+// ::selection {
+//   background-color: red;
+//   color: white;
+// }
+// p::first-letter {
+//   color: $secondary-color;
+// }
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+a {
+  color: set-text-color($primary-color);
+  text-decoration: none;
+}
+
+body {
+  font-size: var(--fs-400);
+  background: $primary-color;
+  color: set-text-color($primary-color);
+  font-family: "Syncopate", sans-serif;
+  line-height: 1;
+  margin: 0;
+  height: 100vh;
+}
+
+// mobile navbar
+.nav {
+  line-height: 1.5;
+  display: none;
+
+  &.open {
+    margin: -0.5rem 1rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+
+  &__item {
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    &.active a {
+      color: $secondary-color;
+    }
+    a {
+      @include transition-ease;
+      &:hover {
+        color: $secondary-color;
+        text-decoration: none;
+      }
+    }
+
+    // &:last-child a {
+    //   color: red;
+    // }
+  }
+  .dropdown {
+    font-weight: 700;
+    text-transform: uppercase;
+
+    .dropdown__selected {
+      display: flex;
+      cursor: pointer;
+      @include transition-ease;
+
+      &:hover {
+        color: $secondary-color;
+        text-decoration: none;
+      }
+
+      .arrow {
+        position: relative;
+        height: 15px;
+      }
+      .arrow::before,
+      .arrow::after {
+        content: "";
+        position: absolute;
+        bottom: 0px;
+        width: 0.15rem;
+        height: 100%;
+        transition: all 0s ease-in-out;
+      }
+      .arrow::before {
+        left: 26px;
+        top: 4px;
+        transform: rotate(45deg);
+        background-color: #fff;
+      }
+      .arrow::after {
+        left: 16px;
+        top: 4px;
+        transform: rotate(-45deg);
+        background-color: #fff;
+      }
+      .active.arrow::before {
+        left: 26px;
+        transform: rotate(-45deg);
+        background-color: $secondary-color;
+      }
+      .active.arrow::after {
+        left: 17px;
+        transform: rotate(45deg);
+        background-color: $secondary-color;
+      }
+    }
+    .dropdown__menu {
+      display: none;
+    }
+  }
+  .dropdown.open {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .dropdown__selected {
+      color: $secondary-color;
+    }
+    .dropdown__menu {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.hamburger-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .hamburger {
+    position: relative;
+    left: 10px;
+    margin: 17px 0px;
+    height: 30px;
+    width: 40px;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+    &__btn {
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+      width: 24px;
+      height: 3px;
+      background: #fff;
+      transition: all 0.5s ease-in-out;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: -8px;
+        width: 28px;
+        height: 3px;
+        background: #fff;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 8px;
+        width: 20px;
+        height: 3px;
+        background: #fff;
+      }
+
+      &.open {
+        transform: rotate(720deg);
+        background: transparent;
+
+        &::before {
+          transform: rotate(45deg) translate(5px, 8px);
+        }
+
+        &::after {
+          width: 28px;
+          transform: rotate(-45deg) translate(3px, -7px);
+        }
+      }
+    }
+  }
+}
+
+// alert
+.alert {
+  width: 100%;
+  border: 2px solid rgba(0, 0, 0, 0.6);
+  margin-bottom: 0.5rem;
+  text-align: center;
+  padding: 0.5rem;
+  .close {
+    left: 25%;
+    bottom: 2px;
+    position: relative;
+    border-style: none;
+    background: transparent;
+    cursor: pointer;
+    display: contents;
+  }
+}
+
+.alert.hide {
+  display: none;
+}
+.alert__error,
+.alert__message {
+  background: rgb(224, 6, 6);
+}
+.alert__success {
+  background: rgb(31, 171, 22);
+}
+
+//button
+button {
+  margin: 1rem auto;
+  display: block;
+  padding: 0.3rem;
+  border-style: outset;
+  border-color: $secondary-color;
+
+  &:focus {
+    background-color: $secondary-color;
+    border-color: #fff;
+  }
+}
+
+// social icons
+.social-icons {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+
+  a {
+    text-decoration: none;
+    padding: 0.4rem;
+    @include transition-ease;
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}
+
+// footer
+footer {
+  font-size: 1rem;
+  position: fixed;
+  bottom: 0.4rem;
+  right: 1rem;
+  text-align: right;
+  padding: 1rem;
+  color: set-text-color($primary-color);
+}
+
+// form
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  textarea {
+    resize: none;
+    font-size: 1.25rem;
+
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: white;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: $secondary-color;
+    }
+  }
+}
+
+//reponsiveness
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  /* Navigation */
+  .nav,
+  .nav.open {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    margin: 0;
+    min-height: 75px;
+    align-items: center;
+    .dropdown.open {
+      flex-direction: row;
+      gap: 2rem;
+      .dropdown__menu {
+        margin-left: 1.5rem;
+      }
+    }
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  h1 {
+    font-size: 2vw;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}
