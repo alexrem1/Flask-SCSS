@@ -135,8 +135,11 @@ body {
     }
     .dropdown__menu {
       display: flex;
-      gap: 1rem;
+      // gap: 1rem;
       font-size: 0.9rem;
+      .nav__item {
+        margin: 0rem 0rem 0rem 1rem;
+      }
     }
   }
 }
@@ -228,11 +231,12 @@ body {
 
 //button
 button {
-  margin: 1rem auto;
+  margin: 1rem;
   display: block;
   padding: 0.3rem;
-  border-style: outset;
-  border-color: $secondary-color;
+  background-color: lightgray;
+  height: 50px;
+  width: 100px;
 
   &:focus {
     background-color: $secondary-color;
@@ -272,6 +276,20 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  input {
+    height: 35px;
+    border-style: none;
+    text-align: center;
+  }
+
+  label {
+    font-size: 1.25vw;
+    font-family: "Syncopate", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5vw;
+    line-height: 1.2;
+    margin: 0.8rem 0rem 0.8rem 0rem;
+  }
   textarea {
     resize: none;
     font-size: 1.25rem;

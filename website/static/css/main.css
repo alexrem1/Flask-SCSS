@@ -274,10 +274,6 @@ h2 span a:hover {
   height: 100%;
 }
 
-.login .login--container form {
-  gap: 0.3rem;
-}
-
 .login .login--container form .login__button {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -308,11 +304,10 @@ h2 span a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 100%;
 }
 
 .signup .signup--container form {
-  gap: 0.6rem;
+  gap: 0.8rem;
 }
 
 .signup .signup--container form .signup__button {
@@ -346,7 +341,6 @@ h2 span a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 100%;
 }
 
 .details .details--container form {
@@ -520,8 +514,11 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 1rem;
   font-size: 0.9rem;
+}
+
+.nav .dropdown.open .dropdown__menu .nav__item {
+  margin: 0rem 0rem 0rem 1rem;
 }
 
 .hamburger-container {
@@ -626,11 +623,12 @@ body {
 }
 
 button {
-  margin: 1rem auto;
+  margin: 1rem;
   display: block;
   padding: 0.3rem;
-  border-style: outset;
-  border-color: #ff652f;
+  background-color: lightgray;
+  height: 50px;
+  width: 100px;
 }
 
 button:focus {
@@ -676,6 +674,21 @@ form {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+form input {
+  height: 35px;
+  border-style: none;
+  text-align: center;
+}
+
+form label {
+  font-size: 1.25vw;
+  font-family: "Syncopate", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5vw;
+  line-height: 1.2;
+  margin: 0.8rem 0rem 0.8rem 0rem;
 }
 
 form textarea {
