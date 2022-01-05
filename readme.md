@@ -1,4 +1,4 @@
-![Responsiveness](website\static\img\Responsiveness.png)
+![Responsiveness](website/static/img/Responsiveness.png)
 
 [View the beer forum here](https://beerforum.herokuapp.com/)
 
