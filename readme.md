@@ -1,6 +1,6 @@
 ![Responsiveness](website/static/img/Responsiveness.png)
 
-[View the beer forum here](https://beerforum.herokuapp.com/)
+[View the beer forum here](http://noirlex1.pythonanywhere.com/)
 
 # Full stack website using html5 scss vanilla js and flask
 
